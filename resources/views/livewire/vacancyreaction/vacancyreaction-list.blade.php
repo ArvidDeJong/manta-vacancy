@@ -1,12 +1,12 @@
 <flux:main container>
     <x-manta.breadcrumb :$breadcrumb />
-    <div class="flex mt-4">
+    <div class="mt-4 flex">
         <div class="flex-grow">
             @if ($vacancy)
-                <x-manta.buttons.large type="add" :href="route('vacancy.reaction.create', ['vacancy' => $vacancy->id])" />
+                <x-manta.buttons.large type="add" :href="route($this->module_routes['create'], ['vacancy' => $vacancy->id])" />
             @endif
             @if (isset($config['settings']) && count($config['settings']) > 0)
-                <x-manta.buttons.large type="gear" :href="route('vacancy.reaction.settings')" />
+                <x-manta.buttons.large type="gear" :href="route($this->module_routes['settings'])" />
             @endif
         </div>
         <div class="w-1/5">
@@ -59,7 +59,7 @@
                     <flux:table.cell>{{ $item->vacancy ? substr($item->vacancy->title, 0, 50) : null }}
                     </flux:table.cell>
                     <flux:table.cell>
-                        <flux:button size="sm" href="{{ route($this->route_name . '.read', $item) }}"
+                        <flux:button size="sm" href="{{ route($this->module_routes['read'], $item) }}"
                             icon="eye" />
                         <x-manta.tables.delete-modal :item="$item" />
                     </flux:table.cell>

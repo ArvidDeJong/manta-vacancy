@@ -44,6 +44,7 @@ class VacancyServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Darvis\MantaVacancy\Console\Commands\InstallCommand::class,
+                \Darvis\MantaVacancy\Console\Commands\SeedVacancyCommand::class,
             ]);
         }
 

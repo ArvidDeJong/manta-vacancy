@@ -22,6 +22,7 @@ class VacancyList extends Component
 
     public function mount()
     {
+
         $this->getBreadcrumb();
     }
 

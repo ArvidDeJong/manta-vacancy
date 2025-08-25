@@ -7,22 +7,28 @@ use Livewire\Attributes\Locked;
 use Illuminate\Database\Eloquent\Builder;
 use Darvis\MantaVacancy\Models\Vacancy;
 use Manta\FluxCMS\Models\MantaModule;
+use Manta\FluxCMS\Services\ModuleSettingsService;
 
 trait VacancyreactionTrait
 {
     public function __construct()
     {
-        $this->route_name = '.vacancyreaction';
+        $this->module_routes = [
+            'name' => 'vacancy',
+            'list' => 'vacancy.reaction.list',
+            'create' => 'vacancy.reaction.create',
+            'update' => 'vacancy.reaction.update',
+            'read' => 'vacancy.reaction.read',
+            'upload' => 'vacancy.reaction.upload',
+            'settings' => 'vacancy.reaction.settings',
+            'maps' => null,
+        ];
 
-        $this->route_list = route('vacancy.reaction.list');
-
-        $settings = MantaModule::where('name', 'vacancyreaction')->first()->toArray();
-        $this->settingsVacancy = MantaModule::where('name', 'vacancy')->first()->toArray();
-
+        $settings = ModuleSettingsService::ensureModuleSettings('vacancyreaction', 'darvis/manta-vacancy');
         $this->config = $settings;
 
-        $this->fields = $settings['fields'];
-        $this->tab_title = isset($settings['tab_title']) ? $settings['tab_title'] : null;
+        $this->fields = $settings['fields'] ?? [];
+        $this->tab_title = $settings['tab_title'] ?? null;
         $this->moduleClass = 'Darvis\MantaVacancy\Models\Vacancyreaction';
     }
 

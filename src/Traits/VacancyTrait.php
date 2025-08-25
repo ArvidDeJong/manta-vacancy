@@ -7,20 +7,28 @@ use Livewire\Attributes\Locked;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Manta\FluxCMS\Models\MantaModule;
+use Manta\FluxCMS\Services\ModuleSettingsService;
 
 trait VacancyTrait
 {
     public function __construct()
     {
-        $this->route_name = 'vacancy';
-        $this->route_list = route('vacancy.list');
+        $this->module_routes = [
+            'name' => 'vacancy',
+            'list' => 'vacancy.list',
+            'create' => 'vacancy.create',
+            'update' => 'vacancy.update',
+            'read' => 'vacancy.read',
+            'upload' => 'vacancy.upload',
+            'settings' => 'vacancy.settings',
+            'maps' => null,
+        ];
 
-        $settings = MantaModule::where('name', 'vacancy')->first()->toArray();
-
+        $settings = ModuleSettingsService::ensureModuleSettings('vacancy', 'darvis/manta-vacancy');
         $this->config = $settings;
 
-        $this->fields = $settings['fields'];
-        $this->tab_title = isset($settings['tab_title']) ? $settings['tab_title'] : null;
+        $this->fields = $settings['fields'] ?? [];
+        $this->tab_title = $settings['tab_title'] ?? null;
         $this->moduleClass = 'Darvis\MantaVacancy\Models\Vacancy';
     }
 
