@@ -47,5 +47,10 @@
                 "Darvis\\MantaVacancy\\VacancyServiceProvider"
             ]
         }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
     }
 }
