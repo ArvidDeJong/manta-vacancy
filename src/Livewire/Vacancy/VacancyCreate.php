@@ -68,6 +68,8 @@ class VacancyCreate extends Component
             'title',
             'title_2',
             'title_3',
+            'employment_type',
+            'location',
             'slug',
             'seo_title',
             'seo_description',

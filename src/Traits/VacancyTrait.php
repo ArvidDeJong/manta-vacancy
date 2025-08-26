@@ -53,6 +53,8 @@ trait VacancyTrait
     public ?string $title = null;
     public ?string $title_2 = null;
     public ?string $title_3 = null;
+    public ?string $employment_type = null;
+    public ?string $location = null;
     public ?string $slug = null;
 
     public ?string $seo_title = null;

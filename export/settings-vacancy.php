@@ -87,6 +87,22 @@ return [
             "required" => false,
             "edit" => true
         ],
+        "employment_type" => [
+            "active" => true,
+            "type" => "text",
+            "title" => "Soort contract (Fulltime, Parttime, Freelance, etc.)",
+            "read" => true,
+            "required" => false,
+            "edit" => true
+        ],
+        "location" => [
+            "active" => true,
+            "type" => "text",
+            "title" => "Locatie",
+            "read" => true,
+            "required" => false,
+            "edit" => true
+        ],
         "slug" => [
             "active" => true,
             "type" => "text",
