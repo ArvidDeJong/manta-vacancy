@@ -13,7 +13,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'manta-vacancy:install 
+    protected $signature = 'manta-vacancy:install
                             {--force : Overwrite existing files}
                             {--migrate : Run migrations after installation}';
 
@@ -38,15 +38,16 @@ class InstallCommand extends Command
         // Step 2: Publish migrations
         $this->publishMigrations();
 
-        // Step 3: Run migrations if requested
-        if ($this->option('migrate')) {
-            $this->runMigrations();
-        }
+        // Step 3: Run migrations
+        $this->runMigrations();
 
-        // Step 4: Create default configuration
+        // Step 4: Import module settings
+        $this->importModuleSettings();
+
+        // Step 5: Create default configuration
         $this->createDefaultConfiguration();
 
-        // Step 5: Show completion message
+        // Step 6: Show completion message
         $this->showCompletionMessage();
 
         return self::SUCCESS;
@@ -110,6 +111,26 @@ class InstallCommand extends Command
     }
 
     /**
+     * Import module settings
+     */
+    protected function importModuleSettings(): void
+    {
+        $this->info('📋 Importing module settings...');
+
+        try {
+            Artisan::call('manta:import-module-settings', [
+                'package' => 'darvis/manta-vacancy',
+                '--all' => true
+            ]);
+            
+            $this->line('   ✅ Module settings imported successfully');
+        } catch (\Exception $e) {
+            $this->warn('   ⚠️  Module settings import failed: ' . $e->getMessage());
+            $this->warn('   ⚠️  You can run this manually: php artisan manta:import-module-settings darvis/manta-vacancy --all');
+        }
+    }
+
+    /**
      * Create default configuration if it doesn't exist
      */
     protected function createDefaultConfiguration(): void
@@ -120,7 +141,7 @@ class InstallCommand extends Command
 
         if (File::exists($configPath)) {
             $config = include $configPath;
-            
+
             // Check if configuration needs updating
             if (!isset($config['route_prefix'])) {
                 $this->warn('   ⚠️  Configuration file exists but may need manual updates');
@@ -143,11 +164,11 @@ class InstallCommand extends Command
 
         $this->comment('Next steps:');
         $this->line('1. Configure your settings in config/manta-vacancy.php');
-        
+
         if (!$this->option('migrate')) {
             $this->line('2. Run migrations: php artisan migrate');
         }
-        
+
         $this->line('3. Access the vacancy management at: /cms/vacancy (or your configured route)');
         $this->newLine();
 
