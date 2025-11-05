@@ -5,11 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - 2025-11-05
+
+### Changed
+
+- **Database Schema Optimization** - Simplified migration files
+  - Removed redundant `created_by` and `updated_by` fields from vacancies table
+  - Removed redundant `created_by` and `updated_by` fields from vacancyreactions table
+  - Maintained essential CMS tracking fields for audit trail
+  - Improved database performance and reduced storage requirements
+
+### Technical Details
+
+- **Migration Updates** - Streamlined database schema for better performance
+- **Backward Compatibility** - Changes maintain compatibility with existing CMS functionality
+
 ## [1.1.1] - 2025-09-10
 
 ### Added
 
-- Initial release of the Manta Vacancy module
+- **Module Settings Import** - Enhanced installer with automatic module settings import
+- **Migration Enforcement** - Improved installation process with mandatory migration execution
 - Complete vacancy management system with CRUD operations
 - Vacancy reaction system for job applications
 

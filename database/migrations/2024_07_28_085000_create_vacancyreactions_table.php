@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('vacancyreactions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestamps();            $table->softDeletes();
             
             // Foreign key to vacancy
             $table->unsignedBigInteger('vacancy_id')->nullable();
             $table->foreign('vacancy_id')->references('id')->on('vacancies')->onDelete('cascade');
             
             // CMS tracking fields
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();
             $table->integer('company_id')->nullable();
             $table->string('host')->nullable();

@@ -1,8 +1,8 @@
-# Project Documentation: Manta Contact Form Module
+# Project Documentation: Manta Vacancy Module
 
 ## Overview
 
-The **darvis/manta-contact** module is a Laravel package designed to integrate with the **darvis/manta-laravel-flux-cms** system. This module provides functionality for managing contact forms and associated submissions.
+The **darvis/manta-vacancy** module is a Laravel package designed to integrate with the **darvis/manta-laravel-flux-cms** system. This module provides functionality for managing job vacancies and associated applications.
 
 ## Technical Specifications
 
@@ -16,10 +16,10 @@ The **darvis/manta-contact** module is a Laravel package designed to integrate w
 
 ### Package Information
 
-- **Name**: darvis/manta-contact
+- **Name**: darvis/manta-vacancy
 - **Type**: Laravel Library Package
 - **License**: MIT
-- **Namespace**: `Darvis\Mantacontact`
+- **Namespace**: `Darvis\MantaVacancy`
 
 ## Project Structure
 
